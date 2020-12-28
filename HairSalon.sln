@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon", "HairSalon\HairSalon.csproj", "{A1B8B11E-A3D3-429D-8EF4-137CA40213FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.API", "HairSalon.API\HairSalon.API.csproj", "{EEEE3489-50AE-48BA-B121-ADCAF1077DAE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Web", "HairSalon.Web\HairSalon.Web.csproj", "{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A1B8B11E-A3D3-429D-8EF4-137CA40213FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1B8B11E-A3D3-429D-8EF4-137CA40213FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1B8B11E-A3D3-429D-8EF4-137CA40213FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1B8B11E-A3D3-429D-8EF4-137CA40213FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEEE3489-50AE-48BA-B121-ADCAF1077DAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEEE3489-50AE-48BA-B121-ADCAF1077DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEEE3489-50AE-48BA-B121-ADCAF1077DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEEE3489-50AE-48BA-B121-ADCAF1077DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
