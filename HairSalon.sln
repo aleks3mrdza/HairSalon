@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.API", "HairSalon.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HairSalon.Web", "HairSalon.Web\HairSalon.Web.csproj", "{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HairSalon.Models", "HairSalon.Models\HairSalon.Models.csproj", "{1A4435F1-90F3-448C-867D-36BB8BC5AE39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D729DF5-1BF6-4BDF-AF08-C939DDB541ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A4435F1-90F3-448C-867D-36BB8BC5AE39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A4435F1-90F3-448C-867D-36BB8BC5AE39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A4435F1-90F3-448C-867D-36BB8BC5AE39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A4435F1-90F3-448C-867D-36BB8BC5AE39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
