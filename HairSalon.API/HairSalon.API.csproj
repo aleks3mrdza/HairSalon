@@ -4,5 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HairSalon.Models\HairSalon.Models.csproj" />
+  </ItemGroup>
+
 
 </Project>
