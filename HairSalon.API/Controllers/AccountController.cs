@@ -8,7 +8,7 @@ namespace HairSalon.API.Controllers
     {
         [HttpPost]
         [Route("login")]
-        public bool Login([FromBody]User user)
+        public bool Login([FromBody]User loginuser)
         {
             return true;
         }
