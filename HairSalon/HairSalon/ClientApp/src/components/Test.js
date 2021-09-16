@@ -20,6 +20,7 @@ export class Test extends Component {
                         <tr>
                             <th>First name</th>
                             <th>Last name</th>
+                            <th>Nick name</th>
                             <th>Mobile phone</th>
                             <th>Landline phone</th>
                             <th>Address</th>
@@ -29,6 +30,7 @@ export class Test extends Component {
                         {this.state.hairdressers.map(hairdresser =>
                             <tr key={hairdresser.firstName}>
                                 <td>{hairdresser.firstName}</td>
+                                <td>{hairdresser.nickName}</td>
                                 <td>{hairdresser.lastName}</td>
                                 <td>{hairdresser.mobilePhone}</td>
                                 <td>{hairdresser.landlinePhone}</td>

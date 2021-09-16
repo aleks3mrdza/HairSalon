@@ -24,6 +24,7 @@ namespace HairSalon.Controllers
             var hairdresser1 = new Hairdresser();
             hairdresser1.FirstName = "Ilija";
             hairdresser1.LastName = "Sekulic";
+            hairdresser1.NickName = "Ike";
             hairdresser1.MobilePhone = "064 555 777";
             hairdresser1.LandlinePhone = "013 456 789";
             hairdresser1.Address = "Ivana Kosancica 50";
@@ -31,6 +32,7 @@ namespace HairSalon.Controllers
             var hairdresser2 = new Hairdresser();
             hairdresser2.FirstName = "Marko";
             hairdresser2.LastName = "Nikolic";
+            hairdresser1.NickName = "Ike";
             hairdresser2.MobilePhone = "064 555 777";
             hairdresser2.LandlinePhone = "013 456 789";
             hairdresser2.Address = "Ivana Kosancica 54";
@@ -38,6 +40,7 @@ namespace HairSalon.Controllers
             var hairdresser3 = new Hairdresser();
             hairdresser3.FirstName = "Janko";
             hairdresser3.LastName = "Peric";
+            hairdresser3.NickName = "Perke";
             hairdresser3.MobilePhone = "064 555 777";
             hairdresser3.LandlinePhone = "013 456 789";
             hairdresser3.Address = "Save Knezevica 74";

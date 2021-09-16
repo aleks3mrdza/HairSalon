@@ -6,6 +6,8 @@
 
         public string LastName { get; set; }
 
+        public string NickName { get; set; }
+
         public string MobilePhone { get; set; }
 
         public string LandlinePhone { get; set; }
