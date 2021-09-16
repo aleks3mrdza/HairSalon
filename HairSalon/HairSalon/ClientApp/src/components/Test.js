@@ -39,8 +39,20 @@ export class Test extends Component {
                         )}
                     </tbody>
                 </table>
+                <br />
+                <button className="btn btn-primary" onClick={this.addHairdresser}>Add hairdresser</button>
             </div>
         );
+    }
+
+    addHairdresser() {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName: 'Ilija', lastName: 'Petrovic' })
+        };
+        fetch('default/add', requestOptions)
+            .then(response => response.json());
     }
 
     async populateHairdressersData() {

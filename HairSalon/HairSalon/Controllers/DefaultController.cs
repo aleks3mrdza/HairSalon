@@ -9,17 +9,13 @@ namespace HairSalon.Controllers
     [Route("[controller]")]
     public class DefaultController : ControllerBase
     {
+        private List<Hairdresser> hairdresseres = new List<Hairdresser>();
+
         private readonly ILogger<DefaultController> _logger;
 
         public DefaultController(ILogger<DefaultController> logger)
         {
             _logger = logger;
-        }
-
-        [HttpGet]
-        public IActionResult GetHairdressers()
-        {
-            var hairdresseres = new List<Hairdresser>();
 
             var hairdresser1 = new Hairdresser();
             hairdresser1.FirstName = "Ilija";
@@ -48,8 +44,21 @@ namespace HairSalon.Controllers
             hairdresseres.Add(hairdresser1);
             hairdresseres.Add(hairdresser2);
             hairdresseres.Add(hairdresser3);
+        }
 
+        [HttpGet]
+        public IActionResult GetHairdressers()
+        {
             return Ok(hairdresseres);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        public IActionResult PostHairdresser(Hairdresser hairdresser)
+        {
+            hairdresseres.Add(hairdresser);
+
+            return Ok();
         }
     }
 }
