@@ -5,14 +5,14 @@ export class Test extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { hairdressers: []};
+        this.state = { hairdressers: [] };
     }
 
     componentDidMount() {
         this.populateHairdressersData();
     }
 
-    render() {        
+    render() {
         return (
             <div>
                 <table className='table table-striped' aria-labelledby="tabelLabel">
@@ -41,6 +41,8 @@ export class Test extends Component {
                 </table>
                 <br />
                 <button className="btn btn-primary" onClick={this.addHairdresser}>Add hairdresser</button>
+
+                <button className="btn btn-primary btn-margin" onClick={this.updateHairdresser}>Update hairdresser</button>
             </div>
         );
     }
@@ -53,6 +55,20 @@ export class Test extends Component {
         };
         fetch('default/add', requestOptions)
             .then(response => response.json());
+    }
+
+    async updateHairdresser() {
+        const requestOptions = {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName: 'Ilija', lastName: 'Jankovic', address: 'New Address', mobilePhone: '123', landlinePhone: '123' })
+        };
+
+        const response = await fetch('default/update', requestOptions);
+        var data = await response.json();
+
+        alert(`Successfuly updated hairdreser ${data[0].firstName} ${data[0].lastName}`);
+        alert('Successfuly updated hairdreser ' + data[0].firstName + ' ' + data[0].lastName);
     }
 
     async populateHairdressersData() {

@@ -60,5 +60,21 @@ namespace HairSalon.Controllers
 
             return Ok();
         }
+
+        [HttpPut]
+        [Route("update")]
+        public IActionResult UpdateHairdresser(Hairdresser hairdresser)
+        {
+            var hairdresserToupdate = hairdresseres.FirstOrDefault(h => h.FirstName == hairdresser.FirstName);
+
+            hairdresserToupdate.FirstName = hairdresser.FirstName;
+            hairdresserToupdate.LastName = hairdresser.LastName;
+            hairdresserToupdate.NickName = hairdresser.NickName;
+            hairdresserToupdate.MobilePhone = hairdresser.MobilePhone;
+            hairdresserToupdate.LandlinePhone = hairdresser.LandlinePhone;
+            hairdresserToupdate.Address = hairdresser.Address;
+
+            return Ok(new List<Hairdresser>() { hairdresserToupdate });
+        }
     }
 }
