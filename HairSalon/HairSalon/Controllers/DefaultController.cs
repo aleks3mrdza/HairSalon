@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HairSalon.Controllers
 {
@@ -50,6 +52,16 @@ namespace HairSalon.Controllers
         public IActionResult GetHairdressers()
         {
             return Ok(hairdresseres);
+        }
+
+        [HttpGet]
+        [Route("wait")]
+
+        public async Task<IActionResult> Wait()
+        {
+            await Task.Delay(7000);
+
+            return Ok();
         }
 
         [HttpPost]
