@@ -43,6 +43,7 @@ export class Test extends Component {
                 <button className="btn btn-primary" onClick={this.addHairdresser}>Add hairdresser</button>
 
                 <button className="btn btn-primary btn-margin" onClick={this.updateHairdresser}>Update hairdresser</button>
+                <button className="btn btn-primary btn-margin" onClick={this.deleteHairdresser}>Delete hairdresser</button>
             </div>
         );
     }
@@ -69,6 +70,15 @@ export class Test extends Component {
 
         alert(`Successfuly updated hairdreser ${data[0].firstName} ${data[0].lastName}`);
         alert('Successfuly updated hairdreser ' + data[0].firstName + ' ' + data[0].lastName);
+    }
+    deleteHairdresser() {
+        const requestOptions = {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstName: 'Ilija', lastName: 'Petrovic' })
+        };
+        fetch('default/delete', requestOptions)
+            .then(response => response.json());
     }
 
     async populateHairdressersData() {
