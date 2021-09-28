@@ -71,14 +71,17 @@ export class Test extends Component {
         alert(`Successfuly updated hairdreser ${data[0].firstName} ${data[0].lastName}`);
         alert('Successfuly updated hairdreser ' + data[0].firstName + ' ' + data[0].lastName);
     }
-    deleteHairdresser() {
+    async deleteHairdresser() {
         const requestOptions = {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstName: 'Ilija', lastName: 'Petrovic' })
+            body: JSON.stringify({ firstName: 'Ilija', lastName: 'Sekulic', nickName: 'Ike', address: 'Ivana Kosancica 50', mobilePhone: '064555777', landlinePhone: '013456789' })
         };
-        fetch('default/delete', requestOptions)
-            .then(response => response.json());
+        const response = await fetch('default/update', requestOptions);
+        var data = await response.json();
+
+        alert(`Successfuly deleted hairdreser ${data[0].firstName} ${data[0].lastName} ${data[0].nickName} ${data[0].address}${data[0].mobilePhone} ${data[0].landlinePhone}`);
+        alert('Successfuly deleted hairdreser ' + data[0].firstName + ' ' + data[0].lastName + ' ' + data[0].nickName + ' ' + data[0].address + ' ' + data[0].mobilePhone + ' ' + data[0].landlinePhone);
     }
 
     async populateHairdressersData() {
