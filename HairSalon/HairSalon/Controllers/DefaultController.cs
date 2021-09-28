@@ -88,5 +88,15 @@ namespace HairSalon.Controllers
 
             return Ok(new List<Hairdresser>() { hairdresserToupdate });
         }
+        [HttpDelete]
+        [Route("delete")]
+        public IActionResult DeleteHairdresser(Hairdresser hairdresser)
+        {
+            var hairdresserToDelete = hairdresseres.FirstOrDefault(h => h.FirstName == hairdresser.FirstName);
+            hairdresseres.Remove(hairdresserToDelete);
+           
+
+            return Ok(new List<Hairdresser>() { hairdresserToDelete });
+        }
     }
 }
