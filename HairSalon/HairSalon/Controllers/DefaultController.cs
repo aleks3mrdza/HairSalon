@@ -1,6 +1,7 @@
 ﻿using HairSalon.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,8 +50,20 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetHairdressers()
+        public async Task<IActionResult> GetHairdressers()
         {
+            using (var connection = new MySqlConnection("Server=localhost;Port=3306;User ID=root;Password=11111"))
+            {
+                connection.Open();
+
+                using (var command = new MySqlCommand("SELECT * FROM world.city;", connection))
+                using (var reader = await command.ExecuteReaderAsync())
+                    while (await reader.ReadAsync())
+                    {
+                        var value = reader.GetValue(0);
+                    }
+            }
+
             return Ok(hairdresseres);
         }
 
@@ -94,7 +107,7 @@ namespace HairSalon.Controllers
         {
             var hairdresserToDelete = hairdresseres.FirstOrDefault(h => h.FirstName == hairdresser.FirstName);
             hairdresseres.Remove(hairdresserToDelete);
-           
+
 
             return Ok(new List<Hairdresser>() { hairdresserToDelete });
         }
