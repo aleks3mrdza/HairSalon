@@ -1,7 +1,7 @@
-﻿using HairSalon.Models;
+﻿using HairSalon.Database;
+using HairSalon.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using MySqlConnector;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -50,19 +50,8 @@ namespace HairSalon.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetHairdressers()
+        public IActionResult GetHairdressers()
         {
-            using (var connection = new MySqlConnection("Server=localhost;Port=3306;User ID=root;Password=11111"))
-            {
-                connection.Open();
-
-                using (var command = new MySqlCommand("SELECT * FROM world.city;", connection))
-                using (var reader = await command.ExecuteReaderAsync())
-                    while (await reader.ReadAsync())
-                    {
-                        var value = reader.GetValue(0);
-                    }
-            }
 
             return Ok(hairdresseres);
         }
