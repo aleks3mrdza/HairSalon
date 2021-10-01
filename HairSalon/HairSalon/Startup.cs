@@ -1,6 +1,7 @@
+using HairSalon.Database;
+using HairSalon.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -66,6 +67,9 @@ namespace HairSalon
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+
+            AsyncHelpers.RunSync(() => DatabaseTableHelper.CreateDatabaseAsync());
+            AsyncHelpers.RunSync(() => DatabaseTableHelper.CreateTablesAsync());
         }
     }
 }

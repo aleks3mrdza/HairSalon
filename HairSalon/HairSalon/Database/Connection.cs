@@ -17,7 +17,7 @@ namespace HairSalon.Database
             var userId = ConfigurationManager.appSettings["database:userId"];
             var password = ConfigurationManager.appSettings["database:password"];
 
-            connection = new MySqlConnection($"Server={server};Port={port};User ID={userId};Password={password}");
+            connection = new MySqlConnection($"Server={server};Port={port};User ID={userId};Password={password};");
             connection.Open();
         }
 
@@ -28,6 +28,17 @@ namespace HairSalon.Database
             get
             {
                 return lazy.Value;
+            }
+        }
+
+        public MySqlConnection DbConnection
+        {
+            get
+            {
+                connection.Close();
+                connection.Open();
+
+                return connection;
             }
         }
 
