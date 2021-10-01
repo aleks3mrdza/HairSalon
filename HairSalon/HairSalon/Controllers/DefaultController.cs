@@ -1,9 +1,10 @@
-﻿using HairSalon.Database;
+﻿using HairSalon.Constant;
+using HairSalon.Database;
 using HairSalon.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MySqlConnector;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace HairSalon.Controllers
@@ -12,46 +13,38 @@ namespace HairSalon.Controllers
     [Route("[controller]")]
     public class DefaultController : ControllerBase
     {
-        private List<Hairdresser> hairdresseres = new List<Hairdresser>();
-
         private readonly ILogger<DefaultController> _logger;
 
         public DefaultController(ILogger<DefaultController> logger)
         {
             _logger = logger;
-
-            var hairdresser1 = new Hairdresser();
-            hairdresser1.FirstName = "Ilija";
-            hairdresser1.LastName = "Sekulic";
-            hairdresser1.NickName = "Ike";
-            hairdresser1.MobilePhone = "064 555 777";
-            hairdresser1.LandlinePhone = "013 456 789";
-            hairdresser1.Address = "Ivana Kosancica 50";
-
-            var hairdresser2 = new Hairdresser();
-            hairdresser2.FirstName = "Marko";
-            hairdresser2.LastName = "Nikolic";
-            hairdresser1.NickName = "Ike";
-            hairdresser2.MobilePhone = "064 555 777";
-            hairdresser2.LandlinePhone = "013 456 789";
-            hairdresser2.Address = "Ivana Kosancica 54";
-
-            var hairdresser3 = new Hairdresser();
-            hairdresser3.FirstName = "Janko";
-            hairdresser3.LastName = "Peric";
-            hairdresser3.NickName = "Perke";
-            hairdresser3.MobilePhone = "064 555 777";
-            hairdresser3.LandlinePhone = "013 456 789";
-            hairdresser3.Address = "Save Knezevica 74";
-
-            hairdresseres.Add(hairdresser1);
-            hairdresseres.Add(hairdresser2);
-            hairdresseres.Add(hairdresser3);
         }
 
         [HttpGet]
-        public IActionResult GetHairdressers()
+        public async Task<IActionResult> GetHairdressers()
         {
+            var hairdresseres = new List<Hairdresser>();
+
+            var connection = Connection.Instance.DbConnection;
+
+            using (var command = new MySqlCommand($"Select * from {Constants.DatabaseName}.Hairdressers;", connection))
+            {
+                using (var reader = await command.ExecuteReaderAsync())
+                    while (await reader.ReadAsync())
+                    {
+                        var hairdresser = new Hairdresser();
+
+                        hairdresser.FirstName = reader.GetString(0);
+                        hairdresser.LastName = reader.GetString(1);
+                        hairdresser.NickName = reader.GetString(2);
+                        hairdresser.MobilePhone = reader.GetString(3);
+                        hairdresser.LandlinePhone = reader.GetString(4);
+                        hairdresser.Address = reader.GetString(5);
+                        hairdresser.Id = reader.GetInt32(6);
+
+                        hairdresseres.Add(hairdresser);
+                    }
+            }
 
             return Ok(hairdresseres);
         }
@@ -68,9 +61,29 @@ namespace HairSalon.Controllers
 
         [HttpPost]
         [Route("add")]
-        public IActionResult PostHairdresser(Hairdresser hairdresser)
+        public async Task<IActionResult> PostHairdresser(Hairdresser hairdresser)
         {
-            hairdresseres.Add(hairdresser);
+            var connection = Connection.Instance.DbConnection;
+
+            using (var command = new MySqlCommand($"Insert into {Constants.DatabaseName}Hairdressers(" +
+                "FirstName," +
+                "LastName," +
+                "NickName," +
+                "MobilePhone," +
+                "LandlinePhone," +
+                "Address" +
+                ") values (" +
+                $"{hairdresser.FirstName}," +
+                $" {hairdresser.LastName}," +
+                $" {hairdresser.NickName}," +
+                $" {hairdresser.MobilePhone}," +
+                $" {hairdresser.LandlinePhone}, " +
+                $"{hairdresser.Address})" +
+                ";"
+                , connection))
+            {
+                var reader = await command.ExecuteReaderAsync();
+            }
 
             return Ok();
         }
@@ -79,26 +92,14 @@ namespace HairSalon.Controllers
         [Route("update")]
         public IActionResult UpdateHairdresser(Hairdresser hairdresser)
         {
-            var hairdresserToupdate = hairdresseres.FirstOrDefault(h => h.FirstName == hairdresser.FirstName);
-
-            hairdresserToupdate.FirstName = hairdresser.FirstName;
-            hairdresserToupdate.LastName = hairdresser.LastName;
-            hairdresserToupdate.NickName = hairdresser.NickName;
-            hairdresserToupdate.MobilePhone = hairdresser.MobilePhone;
-            hairdresserToupdate.LandlinePhone = hairdresser.LandlinePhone;
-            hairdresserToupdate.Address = hairdresser.Address;
-
-            return Ok(new List<Hairdresser>() { hairdresserToupdate });
+            return Ok(new List<Hairdresser>() { });
         }
+
         [HttpDelete]
         [Route("delete")]
         public IActionResult DeleteHairdresser(Hairdresser hairdresser)
         {
-            var hairdresserToDelete = hairdresseres.FirstOrDefault(h => h.FirstName == hairdresser.FirstName);
-            hairdresseres.Remove(hairdresserToDelete);
-
-
-            return Ok(new List<Hairdresser>() { hairdresserToDelete });
+            return Ok(new List<Hairdresser>() { });
         }
     }
 }
