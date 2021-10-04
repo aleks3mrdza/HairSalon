@@ -34,13 +34,9 @@ namespace HairSalon.Controllers
                     {
                         var hairdresser = new Hairdresser();
 
-                        hairdresser.FirstName = reader.GetString(0);
-                        hairdresser.LastName = reader.GetString(1);
-                        hairdresser.NickName = reader.GetString(2);
-                        hairdresser.MobilePhone = reader.GetString(3);
-                        hairdresser.LandlinePhone = reader.GetString(4);
-                        hairdresser.Address = reader.GetString(5);
-                        hairdresser.Id = reader.GetInt32(6);
+                        hairdresser.Id = reader.GetInt32(0);
+                        hairdresser.FirstName = reader.GetString(1);
+                        hairdresser.LastName = reader.GetString(2);
 
                         hairdresseres.Add(hairdresser);
                     }
@@ -65,27 +61,19 @@ namespace HairSalon.Controllers
         {
             var connection = Connection.Instance.DbConnection;
 
-            using (var command = new MySqlCommand($"Insert into {Constants.DatabaseName}Hairdressers(" +
+            using (var command = new MySqlCommand($"Insert into {Constants.DatabaseName}.Hairdressers(" +
                 "FirstName," +
-                "LastName," +
-                "NickName," +
-                "MobilePhone," +
-                "LandlinePhone," +
-                "Address" +
+                "LastName" +
                 ") values (" +
-                $"{hairdresser.FirstName}," +
-                $" {hairdresser.LastName}," +
-                $" {hairdresser.NickName}," +
-                $" {hairdresser.MobilePhone}," +
-                $" {hairdresser.LandlinePhone}, " +
-                $"{hairdresser.Address})" +
-                ";"
+                $"\"{hairdresser.FirstName}\"," +
+                $"\"{hairdresser.LastName}\"" +
+                ");"
                 , connection))
             {
                 var reader = await command.ExecuteReaderAsync();
             }
 
-            return Ok();
+            return await GetHairdressers();
         }
 
         [HttpPut]
