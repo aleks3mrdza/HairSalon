@@ -21,7 +21,7 @@ namespace HairSalon.Database
             var connection = Connection.Instance.DbConnection;
 
             using (var command = new MySqlCommand($"CREATE TABLE IF NOT EXISTS {Constants.DatabaseName}.Hairdressers(" +
-                "Id INT," +
+                "Id INT NOT NULL AUTO_INCREMENT PRIMARY KEY," +
                 "FirstName varchar(50)," +
                 "LastName varchar(50)," +
                 "NickName varchar(50)," +
