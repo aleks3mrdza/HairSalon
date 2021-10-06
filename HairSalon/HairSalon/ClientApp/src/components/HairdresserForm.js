@@ -7,6 +7,7 @@ export class HairdresserForm extends React.Component {
 
         this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
         this.handleLastNameChange = this.handleLastNameChange.bind(this);
+        this.handleNickNameChange = this.handleNickNameChange.bind(this);
         this.addHairdresser = this.addHairdresser.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -14,11 +15,15 @@ export class HairdresserForm extends React.Component {
     handleFirstNameChange(event) {
         this.setState({ firstName: event.target.value });
     }
-
+    
+    
     handleLastNameChange(event) {
         this.setState({ lastName: event.target.value });
     }
 
+    handleNickNameChange(event) {
+        this.setState({ nickName: event.target.value });
+    }
     handleSubmit(event) {
         event.preventDefault();
 
@@ -40,6 +45,13 @@ export class HairdresserForm extends React.Component {
                 </label>
 
                 <br />
+
+                <label>
+                    Nick Name:
+                    <input type="text" value={this.state.nickName} onChange={this.handleNickNameChange} />
+                </label>
+
+                <br />
                 <input className="btn btn-primary" type="submit" value="Add hairdresser" />
             </form>
         );
@@ -49,7 +61,7 @@ export class HairdresserForm extends React.Component {
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName })
+            body: JSON.stringify({ firstName: this.state.firstName, lastName: this.state.lastName, nickName: this.state.nickName })
         };
         var response = await fetch('default/add', requestOptions);
         var data = await response.json();

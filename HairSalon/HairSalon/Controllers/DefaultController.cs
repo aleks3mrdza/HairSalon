@@ -37,6 +37,7 @@ namespace HairSalon.Controllers
                         hairdresser.Id = reader.GetInt32(0);
                         hairdresser.FirstName = reader.GetString(1);
                         hairdresser.LastName = reader.GetString(2);
+                        hairdresser.NickName = reader.GetString(3);
 
                         hairdresseres.Add(hairdresser);
                     }
@@ -63,10 +64,12 @@ namespace HairSalon.Controllers
 
             using (var command = new MySqlCommand($"Insert into {Constants.DatabaseName}.Hairdressers(" +
                 "FirstName," +
-                "LastName" +
+                "LastName," +
+                "NickName" +
                 ") values (" +
                 $"\"{hairdresser.FirstName}\"," +
-                $"\"{hairdresser.LastName}\"" +
+                $"\"{hairdresser.LastName}\"," +
+                $"\"{hairdresser.NickName}\"" +
                 ");"
                 , connection))
             {
